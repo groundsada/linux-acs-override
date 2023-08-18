@@ -1,5 +1,22 @@
 # ACS Override Patch
 
+## Fork Notice
+
+This repository is a fork of [https://github.com/benbaker76/linux-acs-override](https://github.com/benbaker76/linux-acs-override). The reason I created this fork is to present the following changes that I needed in my attempt to build a patched **Ubuntu (not-mainline)** kernel:
+
+- Added a menuconfig line to build-debian.sh to allow to make the following change:
+```
+# Navigate to: 
+# Cryptographic API
+#    > Certificates for signature checking
+#       > X.509 certificates to be preloaded into the system blacklist keyring
+# Change the 'debian/certs/debian-uefi-certs.pem' string to ''
+
+```
+- Uploaded a working Ubuntu 5.4.0 patched kernel to the folder named 'kernel'.
+
+## Introduction
+
 A common use case in virtualization is the need to passthrough a PCI or VGA device to a guest VM. However, because all devices within a single IOMMU group must be passed through at once, it can pose challenges to passthrough if there are multiple devices in the same IOMMU group.
 
 To address the issue, Alex Williamson created a kernel patch that allows each device to be placed into its own IOMMU group, easing passthrough:

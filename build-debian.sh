@@ -8,4 +8,5 @@ wget -N https://github.com/torvalds/linux/archive/refs/tags/v$KERNEL_VER.zip
 unzip -o v$KERNEL_VER.zip
 cd linux-$KERNEL_VER
 patch -p1 < ../acso.patch
+make menuconfig
 sudo make olddefconfig -j $(nproc) bindeb-pkg LOCALVERSION=-acso KDEB_PKGVERSION=$(make kernelversion)-1
